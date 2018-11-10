@@ -1,4 +1,4 @@
-package com.gitup.aws;
+/*package com.gitup.aws;
 
 import static org.junit.Assert.*;
 
@@ -27,3 +27,4 @@ public class hdstest {
 	}
 
 }
+*/
