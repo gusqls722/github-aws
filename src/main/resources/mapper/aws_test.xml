@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitup.aws.AWS">
+  <select id="selectAWSLIST" resultType="aws">
+    select * from aws_test
+  </select>
+  
+  <select id="selectAWSONE" resultType="aws" parameterType="Integer">
+  	select * from aws_test 
+  	where atnum=#{atnum}
+  </select>
+  
+  <insert id="insertAWS" parameterType="aws">
+  	insert into aws_test (atname,atage)
+  	values (#{atname},#{atage})
+  </insert>
+  
+  <update id="updateAWS" parameterType="aws">
+  	update aws_test 
+  	<set>
+  		<if test="atname!=null">atname=#{atname},</if>
+  		<if test="atage!=null">atage=#{atage},</if>
+  	</set>
+  	where atnum=#{atnum}
+  </update>
+  
+  <delete id="deleteAWS" parameterType="Integer">
+  	delete from aws_test where atnum=#{atnum}
+  </delete>
+</mapper>

@@ -172,6 +172,24 @@
 		    <version>4.3.8.RELEASE</version>
 		    <scope>test</scope>
 		</dependency>
+		
+		
+		<!-- log4jdbc -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
+		
+		<!-- lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.16.22</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
     	<finalName>bdi</finalName>

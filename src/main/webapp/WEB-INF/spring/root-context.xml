@@ -16,9 +16,31 @@
 		<property name="driverClassName" value="${db.driverclassName}"/>
 	</bean>
 	
-	<bean id="hds" class="com.zaxxer.hikari.HikariDataSource">
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
 		<constructor-arg ref="hc"/>
 	</bean>
 	
+
+	<bean id="dsp" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="ds"/>
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE"/>
+				<property name="sqlPrefix" value="SQL : "/>
+			</bean>
+		</property>
+	</bean>
 	
+	<bean id ="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dsp"/>
+		<property name="typeAliasesPackage" value="com.gitup.aws.vo"/>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<context:component-scan base-package="com.gitup.aws.dao" />
+	<context:component-scan base-package="com.gitup.aws.service" />
 </beans>
